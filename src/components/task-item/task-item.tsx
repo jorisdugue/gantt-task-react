@@ -36,7 +36,7 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
     ...props,
   };
   const textRef = useRef<SVGTextElement>(null);
-  const [taskItem, setTaskItem] = useState<JSX.Element>(<div />);
+  const [taskItem, setTaskItem] = useState<React.JSX.Element>(<div />);
   const [isTextInside, setIsTextInside] = useState(true);
 
   useEffect(() => {
