@@ -33,6 +33,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   ganttHeight = 0,
   viewMode = ViewMode.Day,
   preStepsCount = 1,
+  endStepsCount = 1,
   locale = "en-GB",
   monthCalendarFormat = "long",
   monthTaskListFormat = "long",
@@ -71,7 +72,12 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
   const [dateSetup, setDateSetup] = useState<DateSetup>(() => {
-    const [startDate, endDate] = ganttDateRange(tasks, viewMode, preStepsCount);
+    const [startDate, endDate] = ganttDateRange(
+      tasks,
+      viewMode,
+      preStepsCount,
+      endStepsCount
+    );
     return {
       viewMode,
       monthCalendarFormat,
@@ -116,7 +122,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     const [startDate, endDate] = ganttDateRange(
       filteredTasks,
       viewMode,
-      preStepsCount
+      preStepsCount,
+      endStepsCount
     );
     let newDates = seedDates(startDate, endDate, viewMode);
     if (rtl) {
@@ -285,7 +292,6 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
           event.preventDefault();
         }
       }
-
       setIgnoreScrollEvent(true);
     };
 
@@ -326,8 +332,9 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
 
   /**
    * Handles arrow keys events and transform it to new scroll
+   * @return {void}
    */
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     event.preventDefault();
     let newScrollY = scrollY;
     let newScrollX = scrollX;
