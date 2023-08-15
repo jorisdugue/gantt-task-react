@@ -105,24 +105,6 @@ const App = () => {
         ganttHeight={300}
         columnWidth={columnWidth}
       />
-      <h3>Gantt With Limited Height and maxheigh</h3>
-      <Gantt
-          tasks={tasks}
-          viewMode={view}
-          monthCalendarFormat={"2-digit"}
-          monthTaskListFormat={"short"}
-          onDateChange={handleTaskChange}
-          onDelete={handleTaskDelete}
-          onProgressChange={handleProgressChange}
-          onDoubleClick={handleDblClick}
-          onClick={handleClick}
-          onSelect={handleSelect}
-          onExpanderClick={handleExpanderClick}
-          listCellWidth={isChecked ? "155px" : ""}
-          ganttHeight={700}
-          maxHeight={'400px'}
-          columnWidth={columnWidth}
-      />
     </div>
   );
 };
