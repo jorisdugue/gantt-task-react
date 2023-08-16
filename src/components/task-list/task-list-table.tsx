@@ -42,6 +42,20 @@ export const TaskListTableDefault: React.FC<{
     day: "numeric",
     month: monthFormat,
   };
+
+  const buildNameLink = (name: string, link?: string): React.JSX.Element => {
+    if (link !== undefined && link !== null && link.trim().length > 0) {
+      return (
+        <div>
+          <a href={link} target={"_blank"} rel={"nofollow noreferrer"}>
+            {name}
+          </a>
+        </div>
+      );
+    } else {
+      return <div>{name}</div>;
+    }
+  };
   const toLocaleDateString = useMemo(
     () => toLocaleDateStringFactory(locale),
     [locale]
@@ -87,7 +101,7 @@ export const TaskListTableDefault: React.FC<{
                 >
                   {expanderSymbol}
                 </div>
-                <div>{t.name}</div>
+                {buildNameLink(t.name, t.link)}
               </div>
             </div>
             <div

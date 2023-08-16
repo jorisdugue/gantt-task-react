@@ -17,6 +17,7 @@ export interface Task {
   name: string;
   start: Date;
   end: Date;
+  link?: string;
   /**
    * From 0 to 100
    */
